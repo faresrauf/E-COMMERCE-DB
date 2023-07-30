@@ -1,5 +1,5 @@
 CREATE TABLE Customers (
-	CustomerID int4 NOT NULL,
+	CustomerID serial,
     Name varchar(20) NULL,
 	Email varchar(64) NULL,
 	Address varchar(64) NULL,
@@ -7,7 +7,7 @@ CREATE TABLE Customers (
 );
 
 CREATE TABLE Orders (
-	OrderID int4 NOT NULL,
+	OrderID serial,
     CustomerID int4 NOT NULL,
 	Order_Date date NULL,
 	Total_Amount int4 NULL,
@@ -17,7 +17,7 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE Order_Items (
-	OrderItemID int4 NOT NULL,
+	OrderItemID serial,
 	OrderID int4 NULL,
 	ProductID int4 NULL,
 	Quantity int4 NULL,
@@ -29,15 +29,16 @@ CREATE TABLE Order_Items (
 
 
 CREATE TABLE Products (
-	ProductID int4 NOT NULL,
+	ProductID serial,
 	"Name" VARCHAR(20) NULL,
 	Description VARCHAR(2000) NULL,
 	Price float4 NULL,
+	Quantity int4 DEFAULT 0,
 	CONSTRAINT Products_PK PRIMARY KEY (ProductID)
 );
 
 CREATE TABLE Categories (
-	CategoryID int4 NOT NULL,
+	CategoryID serial,
 	"Name" varchar(64) NULL,
 	CONSTRAINT Categories_PK PRIMARY KEY (CategoryID)
 );
@@ -52,7 +53,7 @@ CREATE TABLE Product_Categories (
 );
 
 CREATE TABLE Reviews (
-	ReviewID int4 NOT NULL,
+	ReviewID serial,
 	ProductID int4 NULL,
 	CustomerID int4 NULL,
 	Rating numeric(2, 1) NULL,
@@ -64,7 +65,7 @@ CREATE TABLE Reviews (
 );
 
 CREATE TABLE Suppliers (
-	SupplierID int4 NOT NULL,
+	SupplierID serial,
 	Supplier_Name VARCHAR(64) NULL,
 	Address VARCHAR(64) NULL,
 	Phone_Number VARCHAR(15) NULL,
